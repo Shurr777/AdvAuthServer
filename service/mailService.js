@@ -21,14 +21,16 @@ class MailService {
             subject: "Account Activation Mail" + process.env.API_URL,
             text: '',
             html:
-            `
+                `
             <div class="container">
             <h1>To activate follow the link</h1>
             <a href="${link}">${link}</a>
             </div>
             `
         }, (error, info) => {
-            if (error) {return console.log(error); }
+            if (error) {
+                return console.log(error);
+            }
         })
     }
 

@@ -25,6 +25,15 @@ class UserService {
 
         return {...tokens, user: userDto};
     }
+
+    async activate(activationLink){
+        const user = await UserModel.findOne({activationLink}).exec();
+        if (!user) {
+            throw new Error(`User ${activationLink} does not exist`);
+        }
+        user.isActivated = true;
+        await user.save();
+    }
 }
 
 module.exports = new UserService();
